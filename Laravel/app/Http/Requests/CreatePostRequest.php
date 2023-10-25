@@ -24,7 +24,7 @@ class CreatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'newPost' => 'required|string|max:100',
+            'newPost' => 'required|string|max:100|regex:/[^\s　]/',
         ];
     }
 
@@ -34,6 +34,7 @@ class CreatePostRequest extends FormRequest
             'newPost.required' => '投稿内容は必須です。',
             'newPost.string' => '投稿内容は文字列で入力してください。',
             'newPost.max' => '投稿内容は100文字以内で入力してください。',
+            'newPost.regex' => '投稿内容は必須です。',
         ];
     }
 }

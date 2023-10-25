@@ -22,11 +22,11 @@ Route::get('/', function () {
 //     echo 'Hello World!!';
 //     });
 
-Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\RegisterController@register');
-
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('index', [PostsController::class, 'index']);
 
@@ -44,3 +44,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/posts/search', [PostsController::class, 'search']);
+
+// Route::get('/index', 'UserController@login')->middleware('auth');

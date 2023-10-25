@@ -78,12 +78,13 @@ class PostsController extends Controller
     $up_contents = $request->input('upPost');
 
     $rules = [
-        'upPost' => 'required|string|max:100',
+        'upPost' => 'required|string|max:100|regex:/[^\s　]/',
     ];
     $messages = [
         'upPost.required' => '投稿内容は必須です。',
         'upPost.string' => '投稿内容は文字列で入力してください。',
         'upPost.max' => '投稿内容は100文字以内で入力してください。',
+        'upPost.regex' => '投稿内容は必須です。',
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
