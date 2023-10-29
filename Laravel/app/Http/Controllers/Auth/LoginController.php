@@ -47,6 +47,11 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // ログイン成功
             return redirect('/index');
+        } else {
+            // ログイン失敗時の処理
+            return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
+                'email' => '認証に失敗しました。',  // ログインに失敗したことをユーザーに通知
+            ]);
         }
     }
 
