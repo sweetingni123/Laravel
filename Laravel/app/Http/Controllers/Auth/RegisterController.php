@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -71,10 +71,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        Auth::login($user);
+        // Auth::login($user);
+        // return $this->registered($request, $user) ?: redirect($this->redirectPath());
         // return redirect()->route('login');
+        Auth::logout();
         // return redirect('/login');
-        // Auth::logout();
+        // return view('auth.login');
         return $user;
         }
 }
